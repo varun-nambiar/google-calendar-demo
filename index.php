@@ -14,6 +14,8 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     // Code to create and send invitations
     // Refer to Google Calendar API documentation for this part
     
+    $date = date("Y-m-d", strtotime("tomorrow"));
+
     echo "<pre>";
 
     // print_r($_SESSION);
@@ -23,17 +25,18 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
         'location' => 'Location here',
         'description' => 'Description here',
         'start' => array(
-            'dateTime' => '2023-08-25T21:00:00',
+            'dateTime' => $date . 'T23:00:00',
             'timeZone' => 'Asia/Kolkata',
         ),
         'end' => array(
-            'dateTime' => '2023-08-25T21:30:00',
+            'dateTime' => $date . 'T23:30:00',
             'timeZone' => 'Asia/Kolkata',
         ),
         // https://yopmail.com/en/wm
         'attendees' => array(
             array('email' => 'user1@yopmail.com'),
             array('email' => 'user2@yopmail.com')
+            // oasis email(or logged in email) will always be included
         ),
       );
 
